@@ -1,0 +1,33 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Nuevo Rol{% endblock %}
+
+{% block body %}
+
+	<!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      	<h1>Roles</h1>
+       	<p><a class="btn btn-primary btn-large" href="#">Listado &raquo;</a></p>
+    </div>
+
+    <div class="row">
+
+    	<div class="span4">
+          <h2>Nuevo Rol</h2>
+          <p>Los Roles sirven para agrupar Usuarios y Permisos de accesos de tal forma que sea más simple categorizarlos y crear las políticas de Seguridad.</p>
+        </div>
+
+        <div class="span8">
+        	{{ form_errors(formulario) }}
+
+			<form class="well" action="{{ path('admin_rol_nuevo') }}" method="post" {{ form_enctype(formulario) }}>
+			{{ form_widget(formulario) }}
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button class="btn">Cancelar</button>
+			</div>
+		</form>
+        </div>
+    </div><!--/row-->
+
+{% endblock %}

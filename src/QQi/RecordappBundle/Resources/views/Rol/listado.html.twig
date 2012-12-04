@@ -1,0 +1,43 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Todos los Roles{% endblock %}
+
+{% block body %}
+	<!-- Main hero unit for a primary marketing message or call to action -->
+   	<div class="hero-unit">
+       	<h1>Roles</h1>
+       	<p><a class="btn btn-primary btn-large" href="{{ path('admin_rol_nuevo') }}">Nuevo &raquo;</a></p>
+   	</div>
+
+	<!-- Example row of columns -->
+    <div class="row">
+    
+      	<div class="span4">
+          <h2>Opciones</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+
+        <div class="span8">
+
+        <table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Nombre</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for datos in listado %}
+		<tr>
+			<td>{{ datos.id }}</td>
+			<td>{{ datos.nombre }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+          
+        </div>
+       
+      </div>
+{% endblock %}

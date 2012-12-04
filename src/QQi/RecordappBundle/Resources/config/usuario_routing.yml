@@ -1,0 +1,38 @@
+admin_usuario_listado:
+    pattern:	/usuario/listado
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:listado }
+
+admin_usuario_nuevo:
+    pattern:   /usuario/nuevo
+    defaults:  { _controller: QQiRecordappBundle:Usuario:nuevo }
+
+admin_usuario_ver:
+    pattern:	/usuario/ver/{id}
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:ver }
+
+admin_usuario_editar:
+    pattern:	/usuario/editar/{id}
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:editar }
+
+admin_usuario_desactivar:
+    pattern:    /usuario/desactivar/{id}
+    defaults:   { _controller: QQiRecordappBundle:Usuario:desactivar }
+
+admin_usuario_activar:
+    pattern:    /usuario/activar/{id}
+    defaults:   { _controller: QQiRecordappBundle:Usuario:activar }
+
+login:
+    pattern:	/login
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:login }
+
+login_check:
+    pattern:	/check
+
+logout:
+    pattern:	/logout
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:logout }
+
+denegado:
+    pattern:	/denegado
+    defaults:	{ _controller: QQiRecordappBundle:Usuario:denegado }

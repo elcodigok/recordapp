@@ -1,0 +1,7 @@
+admin_rol_listado:
+    pattern:   /rol/listado
+    defaults:  { _controller: QQiRecordappBundle:Rol:listado }
+
+admin_rol_nuevo:
+    pattern:    /rol/nuevo
+    defaults:   { _controller: QQiRecordappBundle:Rol:nuevo }

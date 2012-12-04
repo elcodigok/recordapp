@@ -1,4 +1,15 @@
+#q_qi_recordapp:
+#    resource: "@QQiRecordappBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
+
+_usuario:
+    resource: "@QQiRecordappBundle/Resources/config/usuario_routing.yml"
+
+_rol:
+    resource: "@QQiRecordappBundle/Resources/config/rol_routing.yml"

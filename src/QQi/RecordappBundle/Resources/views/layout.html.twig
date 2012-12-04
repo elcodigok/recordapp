@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+{% block menu %}
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">RecordApp</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="nav-header">Usuario</li>
+                  <li><a href="{{ path('admin_usuario_listado') }}">Usuarios</a></li>
+                  <li><a href="{{ path('admin_rol_listado') }}">Roles</a></li>
+                  <li class="nav-header">Sistema</li>
+                  <li><a href="#">Catálogos</a></li>
+                  <li><a href="#">Direcciones</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li><a href="#">Grupos</a></li>
+                </ul>
+              </li>
+              {% endif %}
+              <li><a href="#">Acerca de</a></li>
+              <li><a href="#">Contacto</a></li>
+              <li><a href="#">Ayuda</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li id="fat-menu" class="dropdown">
+                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Usuario <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                    <li><a tabindex="-1" href="#">Perfil</a></li>
+                    <li><a tabindex="-1" href="#">Contraseña</a></li>
+                    <li class="divider"></li>
+                    <li><a tabindex="-1" href="{{ path('logout') }}">Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+$(function() {
+  $('.dropdown-toggle').dropdown();
+});
+</script>
+{% endblock %}
