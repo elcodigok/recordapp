@@ -1,0 +1,14 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Usuario{% endblock %} 
+
+{% block body %}
+	<div class="hero-unit">
+		<h2>{{ usuario.apellido }}, {{ usuario.nombre }}</h2>
+		<p><strong>{{ usuario.email }}</strong></p>
+		<p>
+			<a class="btn btn-primary btn-large" href="{{ path('admin_usuario_editar', {'id': usuario.id }) }}">Modificar &raquo;</a>
+			<a class="btn btn-primary btn-large" href="{{ path('admin_usuario_listado') }}">Listado &raquo;</a>
+		</p>
+	</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block menu %}{% endblock %}
+
+{% block bodydescript %}
+<body>
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="utopia-login-message">
+        <h1>Bienvenido a RecordApp</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="utopia-login-info">
+            <img src="{{ asset('bundles/qqirecordapp/img/login.png') }}" alt="image">
+          </div>
+        </div>
+        <div class="span6">
+          <div class="utopia-login">
+            <h1>Acceso a RecordApp</h1>
+            <form action="{{ path("login_check") }}" method="post" class="utopia">
+
+              {% if error %}
+                <div class="alert alert-error alert-login">
+                  {{ error.message }}
+                </div>
+              {% endif %}
+              
+              <input type="email" placeholder="Email" id="username" name="_username" value="{{ last_username }}" class="span12 utopia-fluid-input validate[required]">
+              
+              <input type="password" id="password" name="_password" class="span12 utopia-fluid-input validate[required]" placeholder="Contraseña" value="">
+              <ul class="utopia-login-action">
+                <li>
+                  <input type="submit" class="btn span4" value="Login">
+                  
+                </li>
+              </ul>
+              <label><a href="#">No puedes acceder con tu cuenta?</a></label>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

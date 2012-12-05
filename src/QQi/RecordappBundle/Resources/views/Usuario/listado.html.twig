@@ -1,0 +1,62 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Todos los Usuarios{% endblock %}
+
+{% block body %}
+	<!-- Main hero unit for a primary marketing message or call to action -->
+   	<div class="hero-unit">
+       	<h1>Usuarios</h1>
+       	<p><a class="btn btn-primary btn-large" href="{{ path('admin_usuario_nuevo') }}">Nuevo &raquo;</a></p>
+   	</div>
+
+	<!-- Example row of columns -->
+    <div class="row">
+
+        <div class="span12">
+
+        <table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Apellido y Nombre</th>
+				<th>Email</th>
+				<th>Acceso</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for datos in listado %}
+		<tr>
+			<td>{{ datos.id }}</td>
+			<td>
+				<a href="{{ path('admin_usuario_ver', { 'id': datos.id }) }}">{{ datos.apellido }}, {{ datos.nombre }}</a>
+				{% if datos.activo %}
+				<span class="label label-info">Activo</span>
+				{% else %}
+				<span class="label label-important">No Activo</span>
+				{% endif %}
+			</td>
+			<td>{{ datos.email }}</td>
+			<td>
+				{% for r in datos.roles %}
+				<ul>
+					<li>{{ r.nombre }}</li>
+				</ul>
+				{% endfor %}
+			</td>
+			<td>
+				{% if datos.activo %}
+				<a href="{{ path('admin_usuario_desactivar', {'id': datos.id }) }}"><i class="icon-trash"></i> Desactivar</a>
+				{% else %}
+				<a href="{{ path('admin_usuario_activar', {'id': datos.id }) }}"><i class="icon-ok"></i> Activar?</a>
+				{% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+          
+        </div>
+       
+      </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Edición de Usuario{% endblock %}
+
+{% block body %}
+
+	<!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      	<h1>Usuario</h1>
+       	<p><a class="btn btn-primary btn-large" href="{{ path('admin_usuario_listado') }}">Listado &raquo;</a></p>
+    </div>
+
+    <div class="row">
+
+    	<div class="span4">
+          <h2>Modificación de Usuario</h2>
+          <p>Los catálogos de Dominios sirven para agrupar Sitios Webs con temáticas similares, de tal forma que sea más simple categorizarlos y crear las políticas de accesos.</p>
+        </div>
+
+        <div class="span8">
+			{{ form_errors(formulario) }}
+
+			<form class="well" action="{{ path('admin_usuario_editar', { 'id': usuario.id }) }}" method="post" {{ form_enctype(formulario) }}>
+			{{ form_widget(formulario) }}
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button class="btn">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
