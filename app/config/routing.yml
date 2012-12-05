@@ -13,3 +13,6 @@ _usuario:
 
 _rol:
     resource: "@QQiRecordappBundle/Resources/config/rol_routing.yml"
+
+_comun:
+    resource: "@QQiRecordappBundle/Resources/config/routing.yml"

@@ -16,4 +16,27 @@ class DefaultController extends Controller
     {
         return array('name' => $name);
     }
+
+    public function acercadeAction()
+    {
+        return $this->render('QQiRecordappBundle:Default:acercade.html.twig');
+    }
+
+    public function contactoAction()
+    {
+        return $this->render('QQiRecordappBundle:Default:contacto.html.twig');
+    }
+
+    public function ayudaAction()
+    {
+        return $this->render('QQiRecordappBundle:Default:ayuda.html.twig');
+    }
+
+    public function portadaAction()
+    {
+        $fecha = new \DateTime();
+        return $this->render('QQiRecordappBundle:Default:portada.html.twig', array(
+            'fecha' => $fecha,
+        ));
+    }
 }

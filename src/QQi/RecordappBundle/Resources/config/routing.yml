@@ -1,0 +1,15 @@
+acerca_de:
+    pattern:	/acerca-de
+    defaults:	{ _controller: QQiRecordappBundle:Default:acercade }
+
+contacto:
+    pattern:	/contacto
+    defaults:	{ _controller: QQiRecordappBundle:Default:contacto }
+
+ayuda:
+    pattern:	/ayuda
+    defaults:	{ _controller: QQiRecordappBundle:Default:ayuda }
+
+portada:
+    pattern:	/
+    defaults:	{ _controller: QQiRecordappBundle:Default:portada }

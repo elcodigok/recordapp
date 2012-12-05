@@ -1,0 +1,27 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}RecordApp{% endblock %} 
+
+{% block body %}
+
+	<!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      	<h2>QQi Web</h2>
+        <p><strong>{{ app.user.username }}</strong> Bienvenido al sistema de Control de Internet</p>
+        <p><i class="icon-calendar"></i> {{ fecha | date('d \\d\\e F \\d\\e\\l Y \\- g:ia')}}</p>
+        <p>{% trans %}November{% endtrans %}</p>
+    </div>
+
+    <div class="row">
+
+    	<div class="span4">
+          <h2>QQi Web</h2>
+          <p>Daniel Maldonado</p>
+        </div>
+
+        <div class="span8">
+        	<p>Texto e información.</p>
+        </div>
+    </div><!--/row-->
+
+{% endblock %}
