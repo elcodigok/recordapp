@@ -58,4 +58,4 @@ security:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/, roles: [ROLE_ADMIN, ROLE_USER] }

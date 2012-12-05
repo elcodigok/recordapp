@@ -1,0 +1,3 @@
+admin_tarea_nueva:
+    pattern:	/tarea/nueva
+    defaults:	{ _controller: QQiRecordappBundle:Tarea:nueva }
