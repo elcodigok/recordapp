@@ -35,6 +35,21 @@ class EnlaceController extends Controller
 
 			return $this->redirect($this->generateUrl('portada'));
 		}
+	}
 
+	public function eliminarAction($id)
+	{
+		$peticion = $this->get('request');
+		$em = $this->getDoctrine()->getEntityManager();
+
+		if (null == $enlace = $em->find('QQiRecordappBundle:Enlace', $id)) 
+		{
+        	return $this->render('QQiRecordappBundle:Default:error.html.twig');
+		}
+
+        $enlace->setEstado(False);
+        $em->persist($enlace);
+        $em->flush();
+        return $this->redirect($this->generateUrl('portada'));
 	}
 }

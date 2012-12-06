@@ -35,6 +35,21 @@ class TareaController extends Controller
 
 			return $this->redirect($this->generateUrl('portada'));
 		}
+	}
 
+	public function eliminarAction($id)
+	{
+		$peticion = $this->get('request');
+		$em = $this->getDoctrine()->getEntityManager();
+
+		if (null == $tarea = $em->find('QQiRecordappBundle:Tarea', $id)) 
+		{
+        	return $this->render('QQiRecordappBundle:Default:error.html.twig');
+		}
+
+        $tarea->setEstado(False);
+        $em->persist($tarea);
+        $em->flush();
+        return $this->redirect($this->generateUrl('portada'));
 	}
 }

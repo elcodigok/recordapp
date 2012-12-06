@@ -7,44 +7,48 @@
     {% include "QQiRecordappBundle::opciones.html.twig" with { 'tareas' : tareas | length, 'enlaces' : enlaces | length } %}
 
 <div class="row-fluid">
-    <div class="span6">
+    <div class="span12">
         <section class="utopia-widget">
             <div class="utopia-widget-title">
                 <img src="{{ asset('bundles/qqirecordapp/img/icons/group.png') }}" class="utopia-widget-icon"><span>Tareas</span>
             </div>
             <div class="utopia-widget-content">
-                {% for datos in tareas %}
-                <div class="utopia-chat">
-                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
-                    <div class="text">
-                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date">{{ datos.fecha | date('d/m/Y') }}</span>
+                <div class="tabbable"> 
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Tareas</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Enlaces</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="utopia-widget-content">
+                                {% for datos in tareas %}
+                                <div class="utopia-chat">
+                                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
+                                    <div class="text">
+                                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date"><a href="{{ path('admin_tarea_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
+                                    </div>
+                                    <p>{{ datos.nombre }}</p>
+                                </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <p>{{ datos.nombre }}</p>
+                        <div class="tab-pane" id="tab2">
+                            <div class="utopia-widget-content">
+                                {% for datos in enlaces %}
+                                <div class="utopia-chat">
+                                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
+                                    <div class="text">
+                                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date"><a href="{{ path('admin_enlace_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
+                                    </div>
+                                    <p><a href="{{ datos.url }}" target="_blank">{{ datos.url }}</a></p>
+                                </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-                
-            </div>
-        </section>
-    </div>
-
-    <div class="span6">
-        <section class="utopia-widget">
-            <div class="utopia-widget-title">
-                <img src="{{ asset('bundles/qqirecordapp/img/icons/group.png') }}" class="utopia-widget-icon"><span>Enlaces</span>
-            </div>
-            <div class="utopia-widget-content">
-                {% for datos in enlaces %}
-                <div class="utopia-chat">
-                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
-                    <div class="text">
-                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date">{{ datos.fecha | date('d/m/Y') }}</span>
-                        </div>
-                        <p><a href="{{ datos.url }}" target="_blank">{{ datos.url }}</a></p>
-                    </div>
-                </div>
-                {% endfor %}
-                
             </div>
         </section>
     </div>

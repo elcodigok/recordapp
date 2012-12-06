@@ -45,6 +45,7 @@ class DefaultController extends Controller
         $repositorio = $this->getDoctrine()->getRepository('QQiRecordappBundle:Tarea');
         $query = $repositorio->createQueryBuilder('t')
                 ->where('t.usuario = :usuario')
+                ->andWhere('t.estado = 1')
                 ->setParameter('usuario', $usuarioId)
                 ->orderBy('t.fecha', 'DESC')
                 ->getQuery();

@@ -1,3 +1,7 @@
 admin_enlace_nuevo:
     pattern:	/enlace/nuevo
     defaults:	{ _controller: QQiRecordappBundle:Enlace:nuevo }
+
+admin_enlace_eliminar:
+    pattern:	/enlace/{id}/del
+    defaults:	{ _controller: QQiRecordappBundle:Enlace:eliminar }
