@@ -28,20 +28,33 @@
 <div class="span3">
   <div class="utopia-chart-legend">
 	<div class="utopia-chart-icon">
-	  <img src="{{ asset('bundles/qqirecordapp/img/icons2/stats_lines.png') }}" />
+	  <a id="contacto" data-toggle="modal" href="#nuevoContacto" class="btn">
+	  	<img src="{{ asset('bundles/qqirecordapp/img/icons2/diary.png') }}" />
+	  </a>
 	</div>
 	<div class="utopia-chart-heading">X</div>
-	<div class="utopia-chart-desc">INFORMES</div>
+	<div class="utopia-chart-desc">CONTACTOS</div>
   </div>
 </div>
 
 <div class="span3">
   <div class="utopia-chart-legend">
 	<div class="utopia-chart-icon">
-	  <img src="{{ asset('bundles/qqirecordapp/img/icons2/download2.png') }}" />
+	  <div class="btn-group">
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <img src="{{ asset('bundles/qqirecordapp/img/icons2/stats_lines.png') }}" />
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Diario</a></li>
+          <li><a href="#">Semanal</a></li>
+          <li><a href="#">Mensual</a></li>
+          <li><a href="#">Anual</a></li>
+        </ul>
+      </div>
 	</div>
 	<div class="utopia-chart-heading">X</div>
-	<div class="utopia-chart-desc">XXXXXX</div>
+	<div class="utopia-chart-desc">INFORMES</div>
   </div>
 </div>
 	</div>
