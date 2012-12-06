@@ -1,0 +1,3 @@
+admin_enlace_nuevo:
+    pattern:	/enlace/nuevo
+    defaults:	{ _controller: QQiRecordappBundle:Enlace:nuevo }

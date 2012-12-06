@@ -17,5 +17,8 @@ _rol:
 _tarea:
     resource: "@QQiRecordappBundle/Resources/config/tarea_routing.yml"
 
+_enlace:
+    resource: "@QQiRecordappBundle/Resources/config/enlace_routing.yml"
+
 _comun:
     resource: "@QQiRecordappBundle/Resources/config/routing.yml"

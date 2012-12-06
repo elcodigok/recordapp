@@ -73,9 +73,15 @@ class Usuario implements UserInterface, \Serializable, AdvancedUserInterface
      */
     protected $tareas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Enlace", mappedBy="enlace")
+     */
+    protected $enlaces;
+
     public function __construct()
     {
         $this->tareas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->enlaces = new \Doctrine\Common\Collections\ArrayCollection();
     	$this->usuario_rol = new \Doctrine\Common\Collections\ArrayCollection();
     	$this->activo = true;
     }
@@ -88,6 +94,16 @@ class Usuario implements UserInterface, \Serializable, AdvancedUserInterface
     public function getTareas()
     {
         return $this->tareas;
+    }
+
+    public function addEnlaces(\QQi\RecordappBundle\Entity\Enlace $enlace)
+    {
+        $this->enlaces[] = $enlace;
+    }
+
+    public function getEnlaces()
+    {
+        return $this->enlaces;
     }
 
     public function addRole(\QQi\RecordappBundle\Entity\Rol $roles)

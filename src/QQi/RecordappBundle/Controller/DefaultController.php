@@ -42,10 +42,6 @@ class DefaultController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $usuarioId = $user->getId();
 
-        /*$listadoTareas = $em->getRepository('QQiRecordappBundle:Tarea')->findBy(array(
-            'usuario' => $usuarioId,
-            ), array('fecha' => 'ASC'));*/
-
         $repositorio = $this->getDoctrine()->getRepository('QQiRecordappBundle:Tarea');
         $query = $repositorio->createQueryBuilder('t')
                 ->where('t.usuario = :usuario')
@@ -55,10 +51,20 @@ class DefaultController extends Controller
 
         $listadoTareas = $query->getResult();
 
+        $repositorio = $this->getDoctrine()->getRepository('QQiRecordappBundle:Enlace');
+        $query = $repositorio->createQueryBuilder('e')
+                ->where('e.usuario = :usuario')
+                ->setParameter('usuario', $usuarioId)
+                ->orderBy('e.fecha', 'DESC')
+                ->getQuery();
+
+        $listadoEnlaces = $query->getResult();
+
         $fecha = new \DateTime();
         return $this->render('QQiRecordappBundle:Default:portada.html.twig', array(
             'fecha' => $fecha,
             'tareas' => $listadoTareas,
+            'enlaces' => $listadoEnlaces,
         ));
     }
 }
