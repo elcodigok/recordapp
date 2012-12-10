@@ -1,5 +1,5 @@
 {
-    "hash": "ba896e07732802362ceda22ed2da82b2",
+    "hash": "117f0718ebae49adeeb24ad5cf2a50fd",
     "packages": [
         {
             "name": "doctrine/common",
@@ -1315,6 +1315,7 @@
     "stability-flags": {
         "twig/extensions": 20,
         "kriswallsmith/assetic": 20,
+        "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20
     }
 }

@@ -1,176 +1,81 @@
-Symfony Standard Edition
-========================
+RecordApp
+=========
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Bienvenidos a RecordApp - Una aplicación desarrollada en Symfony2 que me 
+ermite gestionar todas las Tareas y los Enlaces que ejecutamos a diario en 
+nuestra actividad.
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+En este documento se encuentra los pasos para poder instalar correctamente 
+RecodApp en un entorno local ya sea en un entorno de Desarrollo o de 
+Producción.
 
-1) Installing the Standard Edition
-----------------------------------
+1) Instalación de RecordApp
+---------------------------
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+Antes de comenzar con el proceso de instalación es necesario mencionar los 
+requerimientos del sistema, basta con tener instalado un entorno LAMP (Linux 
+Apache MySQL PHP) para proceder a la instalación.
 
-### Use Composer (*recommended*)
+### Descargar la Aplicación
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+El Código fuente de RecordApp se encuentra en los repositorios públicos de 
+GitHub es por ello que para descargar solo bastará con hacer un clon de este
+repositorio en su servidor local.
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+    git clone https://github.com/elcodigok/recordapp.git recordapp
 
-    curl -s https://getcomposer.org/installer | php
-
-Then, use the `create-project` command to generate a new Symfony application:
-
-    php composer.phar create-project symfony/framework-standard-edition path/to/install 2.1.x-dev
-
-For an exact version, replace 2.1.x-dev with the latest Symfony version (e.g. 2.1.1).
-
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
-
-### Download an Archive File
-
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
-
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
+Dentro del directorio generado ejecutamos:
 
     php composer.phar install
 
-2) Checking your System Configuration
+2) Configuración de la Base de Datos
 -------------------------------------
 
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
+Para utilizar RecordApp es necesario contar con una Base de Datos en MySQL 
+junto a las credenciales de un usuario válido.
 
-Execute the `check.php` script from the command line:
+Para ello necesitamos copiar el contenido del archivo parameters.yml.dis de la
+siguiente manera:
 
-    php app/check.php
+    cp app/config/parameters.yml.dis app/config/parameters.yml
 
-Access the `config.php` script from a browser:
+De esta forma solo queda modificar el archivo parameters.yml con los datos de 
+nuestra bases de datos y generar el esquema de base de datos de la siguiente 
+forma:
 
-    http://localhost/path/to/symfony/app/web/config.php
+    php app/console doctrine:schema:create
 
-If you get any warnings or recommendations, fix them before moving on.
+3) Permiso en los Directorios
+-----------------------------
 
-3) Browsing the Demo Application
---------------------------------
+Antes de corroborar y comenzar a utilizar RecordApp es necesario asignarle 
+algunos permisos especiales a dos directorios:
 
-Congratulations! You're now ready to use Symfony.
+    chown www-data:www-data app/cache/ -R
+    chown www-data:www-data app/logs/ -R
+    chmod 777 app/cache/ -R
+    chmod 777 app/logs/ -R
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+4) Configuraciones Finales
+--------------------------
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+Finalmente solo nos queda ejecutar los siguientes comandos de Symfony2 para 
+terminar de cargar los datos inicial y crear algunos enlaces simbólicos que 
+necesita el sistema.
 
-To see a real-live Symfony page in action, access the following page:
+    php app/console assets:install web/
+    php app/console doctrine:fixtures:load --append
 
-    web/app_dev.php/demo/hello/Fabien
+Ahora solo queda entrar desde un navegador web a http://<ip servidor>/recordapp/web/app.php
 
-4) Getting started with Symfony
--------------------------------
 
-This distribution is meant to be the starting point for your Symfony
-applications, but it also contains some sample code that you can learn from
-and play with.
+5) Usuarios por defecto
+-----------------------
 
-A great way to start learning Symfony is via the [Quick Tour][4], which will
-take you through all the basic features of Symfony2.
+### Credenciales para el usuario Administrador
 
-Once you're feeling good, you can move onto reading the official
-[Symfony2 book][5].
+ * admin@admin.com / admin
 
-A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
+### Credenciales para el usuario con menos privilegios
 
-  * delete the `src/Acme` directory;
-
-  * remove the routing entries referencing AcmeBundle in
-    `app/config/routing_dev.yml`;
-
-  * remove the AcmeBundle from the registered bundles in `app/AppKernel.php`;
-
-  * remove the `web/bundles/acmedemo` directory;
-
-  * remove the `security.providers`, `security.firewalls.login` and
-    `security.firewalls.secured_area` entries in the `security.yml` file or
-    tweak the security configuration to fit your needs.
-
-What's inside?
----------------
-
-The Symfony Standard Edition is configured with the following defaults:
-
-  * Twig is the only configured template engine;
-
-  * Doctrine ORM/DBAL is configured;
-
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * [**JMSSecurityExtraBundle**][13] - Allows security to be added via
-    annotations
-
-  * [**JMSDiExtraBundle**][14] - Adds more powerful dependency injection
-    features
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][15] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.1/book/installation.html
-[2]:  http://getcomposer.org/
-[3]:  http://symfony.com/download
-[4]:  http://symfony.com/doc/2.1/quick_tour/the_big_picture.html
-[5]:  http://symfony.com/doc/2.1/index.html
-[6]:  http://symfony.com/doc/2.1/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.1/book/doctrine.html
-[8]:  http://symfony.com/doc/2.1/book/templating.html
-[9]:  http://symfony.com/doc/2.1/book/security.html
-[10]: http://symfony.com/doc/2.1/cookbook/email.html
-[11]: http://symfony.com/doc/2.1/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.1/cookbook/assetic/asset_management.html
-[13]: http://jmsyst.com/bundles/JMSSecurityExtraBundle/master
-[14]: http://jmsyst.com/bundles/JMSDiExtraBundle/master
-[15]: http://symfony.com/doc/2.1/bundles/SensioGeneratorBundle/index.html
+ * usuario@usuario.com / usuario
