@@ -20,5 +20,8 @@ _tarea:
 _enlace:
     resource: "@QQiRecordappBundle/Resources/config/enlace_routing.yml"
 
+_informe:
+    resource: "@QQiRecordappBundle/Resources/config/informe_routing.yml"
+
 _comun:
     resource: "@QQiRecordappBundle/Resources/config/routing.yml"

@@ -1,0 +1,3 @@
+admin_informe_semanal:
+    pattern:	/informe/semanal
+    defaults:	{ _controller: QQiRecordappBundle:Informe:semanal }
