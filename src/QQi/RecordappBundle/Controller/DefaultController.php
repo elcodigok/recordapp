@@ -55,13 +55,14 @@ class DefaultController extends Controller
         $repositorio = $this->getDoctrine()->getRepository('QQiRecordappBundle:Enlace');
         $query = $repositorio->createQueryBuilder('e')
                 ->where('e.usuario = :usuario')
+                ->andWhere('e.estado = 1')
                 ->setParameter('usuario', $usuarioId)
                 ->orderBy('e.fecha', 'DESC')
                 ->getQuery();
 
         $listadoEnlaces = $query->getResult();
 
-        $fecha = new \DateTime();
+        $fecha = new \DateTime("now");
         return $this->render('QQiRecordappBundle:Default:portada.html.twig', array(
             'fecha' => $fecha,
             'tareas' => $listadoTareas,

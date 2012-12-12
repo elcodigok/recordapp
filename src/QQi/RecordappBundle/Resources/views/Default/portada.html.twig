@@ -22,10 +22,17 @@
                         <div class="tab-pane active" id="tab1">
                             <div class="utopia-widget-content">
                                 {% for datos in tareas %}
+                                {% if (fecha | date('d/m/Y') == datos.fecha | date('d/m/Y')) %}
+                                    <h3>Hoy</h3>
+                                {% endif %}
                                 <div class="utopia-chat">
                                     <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
                                     <div class="text">
-                                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date"><a href="{{ path('admin_tarea_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
+                                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span>
+
+                                        <span class="date"><a href="{{ path('admin_tarea_editar', { 'id': datos.id }) }}" title="Editar"><i class="icon-edit"></i></a>
+
+                                        <span class="date"><a href="{{ path('admin_tarea_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
                                     </div>
                                     <p>{{ datos.nombre }}</p>
                                 </div>
@@ -56,11 +63,11 @@
 
 <!-- Nueva Tarea -->
 <div class="modal hide fade" id="nuevaTarea">
-    <form action="{{ path("admin_tarea_nueva") }}" method="post" name="formTarea">
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
         <h3>Nueva Tarea</h3>
     </div>
+    <form class="modal-form" action="{{ path("admin_tarea_nueva") }}" method="post" name="formTarea">
     <div class="modal-body">
         <div>
             <input class="input-xlarge" id="titulo" name="titulo" type="text" placeholder="Titulo" />
@@ -77,11 +84,11 @@
 
 <!-- Nuevo Enlace -->
 <div class="modal hide fade" id="nuevoEnlace">
-    <form action="{{ path("admin_enlace_nuevo") }}" method="post" name="formTarea">
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
         <h3>Nuevo Enlace</h3>
     </div>
+    <form class="modal-form" action="{{ path("admin_enlace_nuevo") }}" method="post" name="formTarea">
     <div class="modal-body">
         <div>
             <input class="input-xlarge" id="titulo" name="titulo" type="text" placeholder="Titulo" />

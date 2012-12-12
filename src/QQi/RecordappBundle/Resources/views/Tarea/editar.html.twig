@@ -1,0 +1,27 @@
+{% extends "QQiRecordappBundle::layout.html.twig" %}
+
+{% block title %}Edición de Tarea{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+
+    	<div class="span4">
+          <h2>Modificación de Tarea</h2>
+          <p>Los catálogos de Dominios sirven para agrupar Sitios Webs con temáticas similares, de tal forma que sea más simple categorizarlos y crear las políticas de accesos.</p>
+        </div>
+
+        <div class="span8">
+			{{ form_errors(formulario) }}
+
+			<form class="well" action="{{ path('admin_tarea_editar', { 'id': tarea.id }) }}" method="post" {{ form_enctype(formulario) }}>
+			{{ form_widget(formulario) }}
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button class="btn">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

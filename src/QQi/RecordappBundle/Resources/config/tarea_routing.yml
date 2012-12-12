@@ -5,3 +5,7 @@ admin_tarea_nueva:
 admin_tarea_eliminar:
     pattern:	/tarea/{id}/del
     defaults:	{ _controller: QQiRecordappBundle:Tarea:eliminar }
+
+admin_tarea_editar:
+    pattern:	/tarea/{id}/edit
+    defaults:	{ _controller: QQiRecordappBundle:Tarea:editar }
