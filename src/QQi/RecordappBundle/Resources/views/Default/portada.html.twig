@@ -10,7 +10,7 @@
     <div class="span12">
         <section class="utopia-widget">
             <div class="utopia-widget-title">
-                <img src="{{ asset('bundles/qqirecordapp/img/icons/group.png') }}" class="utopia-widget-icon"><span>Actividades</span>
+                <img src="{{ asset('bundles/qqirecordapp/img/icons/group.png') }}" class="utopia-widget-icon"><span>Últimas actividades</span>
             </div>
             <div class="utopia-widget-content">
                 <div class="tabbable"> 
@@ -21,30 +21,39 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
                             <div class="utopia-widget-content">
+                            <table class="table datatable table-striped table-bordered" id="example">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tarea</th>
+                                <th>Contenido</th>
+                                <th>Fecha</th>
+                                <th>Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                                 {% for datos in tareas %}
-                                {% if (fecha | date('d/m/Y') == datos.fecha | date('d/m/Y')) %}
-                                    <h3>Hoy</h3>
-                                {% endif %}
-                                <div class="utopia-chat">
-                                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
-                                    <div class="text">
-                                        <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span>
-
+                                <tr>
+                                    <td>{{ datos.id }}</td>
+                                    <td>{{ datos.titulo }}</td>
+                                    <td>{{ datos.nombre }}</td>
+                                    <td>{{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</td>
+                                    <td>
                                         <span class="date"><a href="{{ path('admin_tarea_editar', { 'id': datos.id }) }}" title="Editar"><i class="icon-edit"></i></a>
 
-                                        <span class="date"><a href="{{ path('admin_tarea_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
-                                    </div>
-                                    <p>{{ datos.nombre }}</p>
-                                </div>
-                                </div>
+                                        <span class="date"><a href="{{ path('admin_tarea_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a></span>
+                                    </td>
+                                </tr>
                                 {% endfor %}
+                            </tbody>
+                            </table>
                             </div>
                         </div>
                         <div class="tab-pane" id="tab2">
                             <div class="utopia-widget-content">
                                 {% for datos in enlaces %}
                                 <div class="utopia-chat">
-                                    <img src="{{ asset('bundles/qqirecordapp/img/user1.jpg') }}" alt="user1">
+                                    <img src="{{ asset('bundles/qqirecordapp/img/icons/link.png') }}" alt="user1">
                                     <div class="text">
                                         <div class="status-alter"><i class="icon-envelope"></i><span class="user">{{ datos.titulo }}</span><span class="date"><a href="{{ path('admin_enlace_eliminar', { 'id': datos.id }) }}" title="Eliminar"><i class="icon-trash"></i></a> {{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</span>
                                     </div>
@@ -105,3 +114,23 @@
 
 {% endblock %}
 
+{% block javascripts %}
+<script>
+$(document).ready(function() {
+    $.extend( $.fn.dataTable.defaults, {
+        "bSort": false
+    } );
+
+    $('#example').dataTable( {
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Mostrar _MENU_ Tareas",
+            "sSearch": "Buscar ",
+            "sInfo": "Mostrando _START_ de _END_ en _TOTAL_ Tareas",
+            "sPrevious": "Anterior",
+            "sNext": "Siguiente",
+        }
+    } );
+} );
+</script>
+{% endblock %}
