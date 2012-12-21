@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>{{ datos.id }}</td>
                                     <td>{{ datos.titulo }}</td>
-                                    <td>{{ datos.nombre }}</td>
+                                    <td><a class="verTarea" data-toggle="modal" href="#verTarea">{{ datos.nombre }}</a></td>
                                     <td>{{ datos.fecha | date("j/m/Y \\- g:i\\h\\s") }}</td>
                                     <td>
                                         <span class="date"><a href="{{ path('admin_tarea_editar', { 'id': datos.id }) }}" title="Editar"><i class="icon-edit"></i></a>
@@ -110,6 +110,23 @@
         <div class="utopia-all-button"><button class="btn btn-primary span4" href="javascript:void(0)">Enviar</button></div>
     </div>
     </form>
+</div>
+
+<!-- Nuevo Enlace -->
+<div class="modal hide fade" id="verTarea">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&times;</a>
+        <h3>Tarea Titulo</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p>Tarea contenido</p>
+            <p>Tarea Fecha</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+    </div>
 </div>
 
 {% endblock %}
